@@ -13,20 +13,30 @@
 </head>
 <body>
 
-<div class="demo2">
-    <div class="block2">
-        <el-rate v-model="rate_value" :max=3 :texts="['記憶にある', 'メモなど2次情報にある', 'チケット券面など1次情報にある', 'good', 'great']" show-text></el-rate>
+<div class="block">
+    <div class="rating_star_demo">
+        <el-rate v-model="rate_value" :max=3 :texts="['記憶にある', 'メモなど2次情報にある', 'チケット券面など1次情報にある']" show-text></el-rate>
+        <el-button v-on:click="hide_show_toggle" type="primary" size="mini" round icon="el-icon-edit" native-type="button" ></el-button>
+        <el-input v-show="show_memo" v-model="memo_area" suffix-icon="el-icon-edit" type="textarea" autosize size="mini" placeholder="メモ"></el-input>
     </div>
 </div>
 
 <script>
     ELEMENT.locale(ELEMENT.lang.ja)
     new Vue({
-        el: '.demo2',
+        el: '.rating_star_demo',
         data: {
-            rate_value: null
+            rate_value: null,         // データなし
+            memo_area: null,          // データなし
+            show_memo: 0              // 非表示スタート
         },
         methods: {
+            hide_show_toggle: function (event) {
+                // メソッド内の `this` は、 Vue インスタンスを参照します
+                this.show_memo = this.show_memo ? false : true;
+                console.info("rate:"+ this.rate_value);
+                console.info("memo:" + this.memo_area);
+            }
         }        
     });
 </script>
