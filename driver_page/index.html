@@ -13,25 +13,50 @@
 
     <!--ajax for vue.js -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!-- <style type="text/css">
+        .el-rate__icon{
+            font-size: 32px;
+        }
+        </style> -->
 </head>
 <body>
 
 <div class="block">
+    <p>編集可能</p>
     <div class="rating_star_demo">
-        <el-rate v-model="rate_value" :max=3 :texts="['記憶にある', 'メモなど2次情報にある', 'チケット券面など1次情報にある']" show-text></el-rate>
+        <el-rate v-model="rate_value" :disabled=rate_disabled :max=3 :texts="['記憶にある', 'メモなど2次情報にある', 'チケット券面など1次情報にある']" show-text></el-rate>
         <el-button v-on:click="hide_show_toggle" type="primary" size="mini" round icon="el-icon-edit" native-type="button" ></el-button>
         <el-input v-show="show_memo" v-model="memo_area" suffix-icon="el-icon-edit" type="textarea" autosize size="mini" placeholder="メモ"></el-input>
     </div>
 </div>
 
+<div class="block2">
+    <p>編集不可能</p>
+    <div class="rating_star_demo_readonly">
+        <el-rate v-model=rate_value :disabled=rate_disabled :max=3 :texts="['記憶にある', 'メモなど2次情報にある', 'チケット券面など1次情報にある']" show-text></el-rate>
+    </div>
+</div>
+
+
 <script>
     ELEMENT.locale(ELEMENT.lang.ja)
+
+    new Vue({
+        el: '.rating_star_demo_readonly',
+        data: {
+            rate_disabled: true,   // 読み取り専用
+            rate_value: 1,          // データ1
+        },
+    });
+
     new Vue({
         el: '.rating_star_demo',
         data: {
-            rate_value: null,   // データなし
-            memo_area: null,    // データなし
-            show_memo: false    // 非表示スタート
+            rate_disabled: false,   // 読み取り専用
+            rate_value: 0,          // データなし
+            memo_area: null,        // データなし
+            show_memo: false        // 非表示スタート
         },
         mounted() {
             axios.get("https://www.yahoo.co.jp/")   // ドメインが違うと→になる. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'null' is therefore not allowed access.
