@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>test</title>
+    <!-- vue.js -->
+    <script src="https://unpkg.com/vue"></script>
+ 
+    <!--element ui -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/element-ui/2.0.0/theme-chalk/index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/element-ui/2.0.0/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/element-ui/2.0.0/locale/ja.js"></script>
+   
+</head>
+<body>
+ 
+<div class="demo">
+ 
+    <div class="block">
+         <el-date-picker name="from_date"  type="date" placeholder="日付を選択してください" v-model="from_date"></el-date-picker>
+    </div>
+             
+</div>
+ 
+<script>
+    ELEMENT.locale(ELEMENT.lang.ja)
+ 
+    new Vue({
+        el: '.demo',
+        data: {
+            from_date: '2011-01-06',
+        },
+        methods: {
+        }        
+    });   
+</script>
+</body>
+</html>
