@@ -20,6 +20,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'webpacker'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'foreman'
+gem 'jquery-rails'
+gem 'jquery-turbolinks'
 gem 'bootstrap',     '~> 4.0.0'
 gem 'material-sass', '~> 4.0.0'
 gem 'material_icons'
