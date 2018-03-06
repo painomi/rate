@@ -10,9 +10,6 @@
   <%= @note.content %>
 </p>
 
-<p>test</p>
-<%= javascript_pack_tag 'rate' %>
-
 <p>
   <strong>Rate:</strong>
   <%= @note.rate %>
@@ -22,6 +19,10 @@
   <strong>Memo:</strong>
   <%= @note.memo %>
 </p>
+
+<%= javascript_pack_tag 'rate' %>
+<rate id="RateStar"></rate>
+
 
 <%= link_to 'Edit', edit_note_path(@note) %> |
 <%= link_to 'Back', notes_path %>
