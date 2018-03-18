@@ -21,8 +21,8 @@
 </p>
 
 <%= javascript_pack_tag 'rate' %>
-<rate id="RateStar" data-target="type: <%= @note.class %>, id: <%= @note.id %>"></rate>
-
+<!-- <rate id="RateStar" data-target="type: <%= @note.class %>, id: <%= @note.id %>"></rate> -->
+<rate id="RateStar" :myid="<%= @note.id %>"></rate>
 
 <%= link_to 'Edit', edit_note_path(@note) %> |
 <%= link_to 'Back', notes_path %>

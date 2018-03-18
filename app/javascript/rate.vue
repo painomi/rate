@@ -18,6 +18,12 @@
 
 <script>
 export default {
+  props: {
+    myid: {
+      type: Number,
+      default: -1
+    }
+  },
   data: function () {
     return {
       memo: 'hi vue2!',
@@ -46,7 +52,7 @@ export default {
   watch: {
     rateValue: function (val) {
       // $('input[name=rating]:eq({{rateValue}})').prop('checked', true);
-      // console.info("test 2 !!!")
+      console.info("myid is:"+ this.myid);
     }
   }
 }
