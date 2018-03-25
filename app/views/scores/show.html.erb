@@ -11,8 +11,13 @@
 </p>
 
 <p>
-  <strong>Ratable:</strong>
-  <%= @score.ratable %>
+  <strong>Scorable:</strong>
+  <%= @score.scorable_id %>
+</p>
+
+<p>
+  <strong>Scorable:</strong>
+  <%= @score.scorable_type %>
 </p>
 
 <%= link_to 'Edit', edit_score_path(@score) %> |

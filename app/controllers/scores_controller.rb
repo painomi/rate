@@ -69,6 +69,6 @@ class ScoresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def score_params
-      params.require(:score).permit(:value, :memo, :ratable_id)
+      params.require(:score).permit(:value, :memo, :scorable_type, :scorable_id)
     end
 end

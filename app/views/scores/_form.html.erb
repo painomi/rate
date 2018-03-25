@@ -22,8 +22,13 @@
   </div>
 
   <div class="field">
-    <%= form.label :ratable_id %>
-    <%= form.text_field :ratable_id, id: :score_ratable_id %>
+    <%= form.label :scorable_id %>
+    <%= form.text_field :scorable_id, id: :score_scorable_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :scorable_type %>
+    <%= form.text_field :scorable_type, id: :score_scorable_type %>
   </div>
 
   <div class="actions">

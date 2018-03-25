@@ -7,7 +7,8 @@
     <tr>
       <th>Value</th>
       <th>Memo</th>
-      <th>Ratable</th>
+      <th></th>
+      <th></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,7 +18,8 @@
       <tr>
         <td><%= score.value %></td>
         <td><%= score.memo %></td>
-        <td><%= score.ratable %></td>
+        <td><%= score.scorable_id %></td>
+        <td><%= score.scorable_type %></td>
         <td><%= link_to 'Show', score %></td>
         <td><%= link_to 'Edit', edit_score_path(score) %></td>
         <td><%= link_to 'Destroy', score, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -1,3 +1,3 @@
 class Score < ApplicationRecord
-  belongs_to :ratable
+  belongs_to :scorable, polymorphic: true
 end
