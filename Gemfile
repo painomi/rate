@@ -23,9 +23,9 @@ gem 'foreman'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'bootstrap',     '~> 4.0.0'
-gem 'material-sass', '~> 4.0.0'
-gem 'material_icons'
 # gem 'therubyracer', platforms: :ruby
+
+gem 'font-awesome-sass', '~> 5.0.6'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

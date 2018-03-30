@@ -1,15 +1,16 @@
 <template>
   <div class="star-rating-frame">
-    <span class="star-rating">
-        <input type="radio" name="rating" value="1" v-model="rateValue"><i></i>
-        <input type="radio" name="rating" value="2" v-model="rateValue"><i></i>
-        <input type="radio" name="rating" value="3" v-model="rateValue"><i></i>
-        <input type="radio" name="rating" value="4" v-model="rateValue"><i></i>
-        <input type="radio" name="rating" value="5" v-model="rateValue"><i></i>
-    </span>
-    <span>Picked: {{ rateValue }}</span>
-    <input type="button" value="showHideMemo" v-on:click="showhide">
-    <input type="button" value="clear" v-on:click="clearValue">
+    <div>
+      <span class="star-rating">
+          <input type="radio" name="rating" value="1" v-model="rateValue"><i></i>
+          <input type="radio" name="rating" value="2" v-model="rateValue"><i></i>
+          <input type="radio" name="rating" value="3" v-model="rateValue"><i></i>
+          <input type="radio" name="rating" value="4" v-model="rateValue"><i></i>
+          <input type="radio" name="rating" value="5" v-model="rateValue"><i></i>
+      </span>
+      <i class="fas fa-comment" v-on:click="showhide"></i>
+      <i class="fas fa-eraser" v-on:click="clearValue"></i>
+    </div>
     <div>
     <textarea id="memo" cols="50" rows="3" v-show="memoShow" v-model="memo"></textarea>
     </div>
@@ -29,7 +30,7 @@ export default {
       memo: 'hi vue2!',
       rateValue: "1",
       readOnly: false,
-      memoShow: true
+      memoShow: false
     }
   },
   methods: {
@@ -59,11 +60,13 @@ export default {
 </script>
 
 <style scoped>
-.star-rating-frame {
-  border:1px dotted; 
-  border-color:#226655;
-}
-.star-rating {
+/* for debug */
+  .star-rating-frame {
+    border:0px dotted; 
+    border-color:#226655;
+  }
+
+  .star-rating {
     font-size: 0;
     white-space: nowrap;
     display: inline-block;
@@ -122,16 +125,5 @@ export default {
     text-align: center;
     padding: 20px;
     display: block;
-  }
-  body {
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  }
-  body::before {
-    height: 100%;
-    content: '';
-    width: 0;
-    background: red;
-    vertical-align: middle;
-    display: inline-block;
   }
 </style>
