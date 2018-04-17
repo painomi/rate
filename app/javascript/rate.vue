@@ -35,9 +35,20 @@ export default {
       memoShow: false
     }
   },
-  // created: function () {
-  //   console.info('initialized');
-  // },
+  created: function () {
+    console.info('initialized');
+    axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content');
+    axios.post('/scores.json', {
+      scorable_type: this.scorableType,
+      scorable_id: this.scorableId
+    } )
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  },
   methods: {
     ratecheck: function (event) {
       rateValue = $("[name=rating]:checked").val()

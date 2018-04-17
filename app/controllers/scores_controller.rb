@@ -24,17 +24,9 @@ class ScoresController < ApplicationController
   # POST /scores
   # POST /scores.json
   def create
-    @score = Score.new(score_params)
-
-    respond_to do |format|
-      if @score.save
-        format.html { redirect_to @score, notice: 'Score was successfully created.' }
-        format.json { render :show, status: :created, location: @score }
-      else
-        format.html { render :new }
-        format.json { render json: @score.errors, status: :unprocessable_entity }
-      end
-    end
+    @score= Score.find_or_create_by(scorable_type: score_params[:scorable_type] , scorable_id: score_params[:scorable_id])
+    @score.update(score_params)
+    render :show, status: :created, location: @score
   end
 
   # PATCH/PUT /scores/1
