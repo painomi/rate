@@ -20,9 +20,11 @@
 <script>
 export default {
   props: {
-    myid: {
-      type: Number,
-      default: -1
+    scorableId: {
+      type: Number
+    },
+    scorableType: {
+      type: String
     }
   },
   data: function () {
@@ -33,6 +35,9 @@ export default {
       memoShow: false
     }
   },
+  // created: function () {
+  //   console.info('initialized');
+  // },
   methods: {
     ratecheck: function (event) {
       rateValue = $("[name=rating]:checked").val()
@@ -52,8 +57,18 @@ export default {
   },
   watch: {
     rateValue: function (val) {
-      // $('input[name=rating]:eq({{rateValue}})').prop('checked', true);
-      console.info("myid is:"+ this.myid);
+      // console.info("myid is:"+ this.myid);
+      // console.info('rateValue: '+ this.rateValue);
+      // axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content');
+      // axios.patch('/scores/'+ this.myid, {
+      //   value: this.rateValue
+      // })
+      // .then(function (response) {
+      //   console.log(response);
+      // })
+      // .catch(function (error) {
+      //   console.log(error);
+      // });
     }
   }
 }
@@ -62,7 +77,7 @@ export default {
 <style scoped>
 /* for debug */
   .star-rating-frame {
-    border:0px dotted; 
+    border:0px dotted;
     border-color:#226655;
   }
 
