@@ -23,7 +23,6 @@
 <div :scorable-type="<%= @note.class %>" :scorable-id="<%= @note.id %>"></div>
 
 
-<%= javascript_pack_tag 'rate' %>
 <rate id="RateStar" :scorable-type="'<%= @note.class %>'" :scorable-id="<%= @note.id %>"></rate>
 
 <%= link_to 'Edit', edit_note_path(@note) %> |
