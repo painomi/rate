@@ -55,17 +55,20 @@
 //
 // Then uncomment the code block below:
 //
-import TurbolinksAdapter from 'vue-turbolinks';
+
 import Vue from 'vue/dist/vue.esm'
 import Rate from '../rate.vue'
+import TurbolinksAdapter from 'vue-turbolinks';
 
 Vue.use(TurbolinksAdapter)
 
 document.addEventListener('turbolinks:load', () => {
-  if (document.getElementById("RateStar"))
+  console.debug('turbolinks:load.');
+  var element = document.getElementById("RateStar")
+  if ( element != null )
   {
-    const rateApp = new Vue({
-      el: '#RateStar',
+    var rateApp = new Vue({
+      el: element,
       // data: {
       //   message: "Can you say hello?"
       // },
