@@ -81,18 +81,7 @@ export default {
     showhide: function (event) {
       if (this.memoShow) {
         this.memoShow = false;
-        console.debug("scorableId is:"+ this.scorableId);
-        console.debug('memo: '+ this.memo);
-        axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content');
-        axios.patch('/scores/'+ this.scorableId+'.json', {
-          memo: this.memo
-        })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+        this.ratePatch();
       } else {
         this.memoShow = true;
       }
