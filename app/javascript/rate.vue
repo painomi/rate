@@ -29,34 +29,70 @@ export default {
   },
   data: function () {
     return {
-      memo: 'hi vue2!',
-      rateValue: "1",
+      memo: '',
+      rateValue: "0",
       readOnly: false,
       memoShow: false
     }
   },
-  created: function () {
-    console.info('initialized');
-    axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content');
-    axios.post('/scores.json', {
-      scorable_type: this.scorableType,
-      scorable_id: this.scorableId
-    } )
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+  mounted: function () {  // mounted が良いか、createdが良いか・・・？
+    this.rateGet()
   },
   methods: {
-    ratecheck: function (event) {
-      rateValue = $("[name=rating]:checked").val()
-      console.info(rateValue)
+    rateGet: function () {
+      console.info('loadValue pushed.');
+      axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content');
+      axios.post('/scores.json', {
+        scorable_type: this.scorableType,
+        scorable_id: this.scorableId
+      } )
+        .then((response) => {
+          console.debug('memo:' + response.data.memo );
+          console.debug('rateValue:' + response.data.value );
+          if( response.data.memo != null)
+          {
+            this.memo = response.data.memo;
+          }
+          if( response.data.value != null )
+          {
+            this.rateValue = response.data.value;
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    ratePatch: function () {
+      console.debug("scorableId is:"+ this.scorableId);
+      console.debug('rateValue: '+ this.rateValue);
+      console.debug('memo: '+ this.memo);
+      axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content');
+      axios.patch('/scores/'+ this.scorableId+'.json', {
+        value: this.rateValue,
+        memo: this.memo,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     },
     showhide: function (event) {
       if (this.memoShow) {
         this.memoShow = false;
+        console.debug("scorableId is:"+ this.scorableId);
+        console.debug('memo: '+ this.memo);
+        axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content');
+        axios.patch('/scores/'+ this.scorableId+'.json', {
+          memo: this.memo
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       } else {
         this.memoShow = true;
       }
@@ -67,19 +103,12 @@ export default {
     }
   },
   watch: {
+    memo: function (val) {
+      // memo は、閉じるときにPatchする
+      // 
+    },
     rateValue: function (val) {
-      // console.info("myid is:"+ this.myid);
-      // console.info('rateValue: '+ this.rateValue);
-      // axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content');
-      // axios.patch('/scores/'+ this.myid, {
-      //   value: this.rateValue
-      // })
-      // .then(function (response) {
-      //   console.log(response);
-      // })
-      // .catch(function (error) {
-      //   console.log(error);
-      // });
+      this.ratePatch();
     }
   }
 }
@@ -97,8 +126,8 @@ export default {
     white-space: nowrap;
     display: inline-block;
     /* width = height*5 で設定すると、☆がきれいに見える */
-    width: 75px;
-    height: 15px;
+    width: 100px;
+    height: 20px;
     overflow: hidden;
     position: relative;
     background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjREREREREIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
