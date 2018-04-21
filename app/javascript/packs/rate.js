@@ -62,11 +62,16 @@ import Rate from '../rate.vue'
 Vue.use(TurbolinksAdapter)
 
 document.addEventListener('turbolinks:load', () => {
-  const rateApp = new Vue({
-    el: '#RateStar',
-    // data: {
-    //   message: "Can you say hello?"
-    // },
-    components: { Rate }
-  })
+  if (document.getElementById("RateStar"))
+  {
+    const rateApp = new Vue({
+      el: '#RateStar',
+      // data: {
+      //   message: "Can you say hello?"
+      // },
+      components: { Rate }
+    })
+  } else {
+    console.debug('RateStar is not found.');
+  }
 })
